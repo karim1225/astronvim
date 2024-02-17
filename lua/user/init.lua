@@ -1,3 +1,4 @@
+--TODO: Test
 return {
   plugins = {
     {
@@ -51,10 +52,23 @@ return {
         require("noice.lsp").hover()
       end,
     },
+    {
+      "folke/todo-comments.nvim",
+      dependencies = { "nvim-lua/plenary.nvim" },
+      opts = {},
+      event = "User AstroFile",
+      cmd = { "TodoQuickFix" },
+      keys = {
+        { "<leader>T", "<cmd>TodoTelescope<cr>", desc = "Open TODOSs in Telescope" },
+      },
+    },
   },
   mappings = {
     n = {
-      ["<Tab>"] =  { function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" },
+      ["<Tab>"] = {
+        function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
+        desc = "Next buffer",
+      },
     },
   },
 }
